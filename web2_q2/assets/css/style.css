@@ -1,0 +1,231 @@
+/*-- ========================================= --
+	1.0 BASIC STYLE
+/*-- ========================================= --*/
+
+html {
+	font-size: 100%;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	position: relative;
+	font-size: 100%;
+	margin: 0;
+	min-height: 100%;
+	height: 100%;
+	background-color:black;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	overflow-x: hidden;
+}
+
+
+.wrapper {
+	position: relative;
+	vertical-align: text-top;
+}
+
+.red {
+	color: #DC4C42;
+}
+
+
+/*-- ================== 1.1 BODY FONT-SIZE ACCORDING TO DEVICE WIDTH ====================== --*/
+
+@media all and (max-width:767px) {
+	body {
+		font-size: 97% !important;
+	}
+}
+
+@media all and (max-width:1024px) and (min-width:768px) and (orientation: landscape) {
+	body {
+		font-size: 100% !important;
+	}
+}
+
+@media all and (max-width:1024px) and (min-width:768px) and (orientation: portrait) {
+	body {
+		font-size: 100% !important;
+	}
+}
+
+@media all and (max-width:1200px) and (min-width:1024px) {
+	body {
+		font-size: 85% !important;
+	}
+}
+
+@media all and (max-width:1366px) and (min-width:1200px) {
+	body {
+		font-size: 100% !important;
+	}
+}
+
+@media all and (max-width:1440px) and (min-width:1366px) {
+	body {
+		font-size: 105% !important;
+	}
+}
+
+@media all and (max-width:1680px) and (min-width:1440px) {
+	body {
+		font-size: 115% !important;
+	}
+}
+
+@media all and (max-width:1920px) and (min-width:1680px) {
+	body {
+		font-size: 140% !important;
+	}
+}
+
+@media all and (max-width:2048px) and (min-width:1920px) {
+	body {
+		font-size: 145% !important;
+	}
+}
+
+@media all and (max-width:2560px) and (min-width:2048px) {
+	body {
+		font-size: 155% !important;
+	}
+}
+
+@media all and (max-width:2880px) and (min-width:2560px) {
+	body {
+		font-size: 165% !important;
+	}
+}
+
+
+/*-- ================== 1.2 GENERAL BOOTSTRAP RESET ====================== --*/
+
+a {
+	text-decoration: none;
+}
+
+a:focus,
+a:active:focus {
+	outline: 0 none;
+}
+
+ul {
+	padding-left: 0;
+}
+
+ul li {
+	list-style: none;
+}
+
+
+
+/*-- ========================================= --
+	2.0 TYPOGRAPHY
+/*-- ========================================= --*/
+
+h1 {
+	/* font-family: 'Montserrat', sans-serif; */
+	font-size: 9em;
+	color: #ffffff;
+	margin-top: 0.1em;
+	margin-bottom: 0;
+	line-height: 1;
+	text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+}
+
+h2 {
+	/* font-family: 'Montserrat', sans-serif; */
+	font-size: 1.2em;
+	color: #ffffff;
+	margin-top: 0;
+	margin-bottom: 0.6em;
+	font-weight: 700;
+}
+h3{
+	color: #ffffff;
+	margin-top: 0;
+}
+
+/*-- ========================================= --
+	3.0 SPIRIT BUBBLES STYLE
+/*-- ========================================= --*/
+
+.spirit-bubbles {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+}
+
+
+/*-- ========================================= --
+	4.0 HOME AND RETURN BACK BUTTON
+/*-- ========================================= --*/
+
+ul.return-btn {
+	margin-top: 3em;
+}
+
+ul.return-btn li {
+	display: inline-block;
+	margin-right: 0.5em;
+}
+
+ul.return-btn li a .icons-container {
+	border: 2px solid #ffffff;
+}
+
+ul.return-btn li a {
+	font-family: 'Oswald', sans-serif;
+	color: #ffffff;
+	background: transparent;
+	padding: 0.3em;
+	text-decoration: none;
+	font-weight: 400;
+	border-radius: 2em;
+	width: 12em;
+	display: block;
+	line-height: 2;
+	border: 2px solid #ffffff;
+	margin-bottom: 0.3em;
+}
+
+/*-- ========================================= --
+	7.0 RESPONSIVE STYLE
+/*-- ========================================= --*/
+
+
+/*-- ================== 7.1 EXTRA SMALL DEVICES, PHONES ====================== --*/
+
+@media only screen and (min-height: 481px) {
+	html {
+		height: 100%;
+	}
+}
+
+
+/*-- ================== 7.2 SMALL DEVICES, TABLETS ====================== --*/
+
+@media only screen and (min-width: 768px) {
+	html {
+		height: 100%;
+	}
+	h1 {
+		margin-top: 0.3em;
+		font-size: 13em;
+	}
+	h2 {
+		font-size: 2em;
+		margin-bottom: 1.2em;
+	}
+	.form-inline.search-form .input-group {
+		width: 40%;
+	}
+}

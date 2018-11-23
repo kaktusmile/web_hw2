@@ -1,0 +1,260 @@
+<html>
+<head>
+<style>
+
+
+#upDiv{
+ width:100%;
+ height:10%;
+ background-color:white;
+ float:top;
+}
+#runLine{
+ width:100%;
+ height:10%;
+ background-color:#d3d3d3;
+ float:top;
+}
+
+#leftSide{
+width:48.5%; 
+height:80%; 
+background-color:white; 
+float:left;
+ border:groove 6px #d3d3d3;
+}
+#center{
+width:1%; 
+height:80%; 
+background-color:#d3d3d3; 
+float:left;
+}
+#rightSide{
+ width:48.5%;
+ height:80%;
+ background-color:white;
+ float:right;
+ border:groove 6px #d3d3d3;
+}
+
+.Btn{
+  background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 0%;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: white;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+<div id="upDiv">
+ </div>
+<div id="runLine"> 
+<button id="runBtn" class="Btn">run</button>
+<button id="templateBtn" class="Btn">template</button>
+<!-- Trigger/Open The Modal -->
+<button id="loadBtn" class="Btn">load</button>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+        <p><input type="file" id="fileToLoad"></p>
+		<button id="loadBtnInside" onclick="loadFileAsText()" class="Btn">load</button>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+
+</div>
+
+<!-- Trigger/Open The Modal -->
+<button id="sBtn" class="Btn">save</button>
+<div id="myModal2" class="modal">
+
+  <!-- Modal2 content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+	   <p>Please enter file name</p>
+        <p><input id="inputFileNameToSaveAs"></input></p>
+		 <button onclick="saveTextAsFile()" id="saveBtn" class="Btn">save</button>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+
+</div>  
+ 
+ </div>
+<div id="leftSide" > <textarea rows="33" cols="79" id="text" sstyle="border:solid 1px #d3d3d3; ">
+</textarea></div>
+<div id="center"></div>
+ <div id="rightSide"> 
+ <div id="inputText">
+</div>
+</div>
+
+ <script>
+var text1;
+document.getElementById("runBtn").addEventListener("click", function(){
+text1 = document.getElementById("text").value;
+document.getElementById('inputText').innerHTML = text1;
+});
+document.getElementById("templateBtn").addEventListener("click", function(){
+text1 = document.getElementById("text").value;
+document.getElementById('text').value= "<!DOCTYPE html>\n<html>\n<head>\n\n</head>\n<body>\n\n</body>\n</html>";
+});
+function saveTextAsFile()
+{
+    var textToSave = document.getElementById("text").value;
+    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+    var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+ 
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = textToSaveAsURL;
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+ 
+    downloadLink.click();
+}
+ 
+function destroyClickedElement(event)
+{
+    document.body.removeChild(event.target);
+}
+ 
+function loadFileAsText()
+{
+    var fileToLoad = document.getElementById("fileToLoad").files[0];
+ 
+    var fileReader = new FileReader();
+    fileReader.onload = function(fileLoadedEvent) 
+    {
+        var textFromFileLoaded = fileLoadedEvent.target.result;
+        document.getElementById("text").value = textFromFileLoaded;
+    };
+    fileReader.readAsText(fileToLoad, "UTF-8");
+}
+
+// Get the modal
+var modal = document.getElementById('myModal');
+var modal2 = document.getElementById('myModal2');
+// Get the button that opens the modal
+var btn = document.getElementById("loadBtn");
+var btn2 = document.getElementById("sBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+btn2.onclick = function() {
+    modal2.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+	else if (event.target == modal2) {
+        modal2.style.display = "none";
+    }
+}
+</script>
+
+</body>
+
+</html>
